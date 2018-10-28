@@ -1,0 +1,44 @@
+{% extends 'booklist/base.html' %}
+    {% load staticfiles %}
+<title>
+    {% block title %}
+        Поиск
+    {% endblock %} | CoderNet
+</title>
+    {% block search %}
+<form class="form-inline my-2 my-lg-0" action="{% url 'search_books_url' %}">
+<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+<button class="btn btn-outline-light my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
+</form>
+    {% endblock %}
+    {% block page %} 
+<main role="main">
+<div class="container">
+<br/>
+<div class="alert alert-success" role="alert">
+<h5 class="mt-0 mb-1">Запрашиваемый Вами запрос не найден! </h5>
+   Но Вы можете попробовать другой запрос или поискать в других разделах сайта
+</div>
+<div class="alert alert-info" role="alert">
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Введённый запрос" aria-label="Recipient's username" aria-describedby="button-addon2">
+<div class="input-group-append">
+<button class="btn btn-outline-secondary" type="button" id="button-addon2">&nbsp;Книги&nbsp;</button>
+</div>
+</div> 
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Введённый запрос" aria-label="Recipient's username" aria-describedby="button-addon2">
+<div class="input-group-append">
+<button class="btn btn-outline-secondary" type="button" id="button-addon2">&nbsp;Видео</button>
+</div>
+</div>
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Введённый запрос" aria-label="Recipient's username" aria-describedby="button-addon2">
+<div class="input-group-append">
+<button class="btn btn-outline-secondary" type="button" id="button-addon2">Статьи</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+    {% endblock %}
