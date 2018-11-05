@@ -22,6 +22,8 @@ from .views import main_page, search_books, search_articles, search_courses
 from django.contrib.sitemaps.views import sitemap
 from books.sitemaps import *
 
+from booklist.views import BookFeed
+
 sitemaps = {
     'articles_category': ArticlesCategorySitemap,
     'video_category': VideoCategorySitemap,
@@ -33,6 +35,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    path('rss.xml', BookFeed(), name='book_rss_url'),
     path('admin/', admin.site.urls),
     path('search_books/', search_books, name='search_books_url'),
     path('search_articles/', search_articles, name='search_articles_url'),

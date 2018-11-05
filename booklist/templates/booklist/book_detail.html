@@ -1,58 +1,64 @@
 {% extends 'booklist/booklist.html' %}
-    {% block title %}
+{% block title %}
     {{ book.title }}
-    {% endblock %}
-    {% block keywords %}
-<meta name="keywords" content="{{ book.keywords }}">
-    {% endblock %}
-    {% block description %}
-<meta name="description" content="{{ book.desc_for_find }}">
-    {% endblock %}
-    {% block content %}
-<br/>
-<a href="#" class="btn btn-outline-secondary " onclick="history.back();"><i class="fa fa-reply" aria-hidden="true"></i></i>&nbsp;Вернуться</a><br/>
-<br/>
-<h1>{{ book.title }}</h1>
-<div id="yandex_rtb_R-A-273127-1"></div>
-<script type="text/javascript">
-            (function (w, d, n, s, t) {
-                w[n] = w[n] || [];
-                w[n].push(function () {
-                    Ya.Context.AdvManager.render({
-                        blockId: "R-A-273127-1",
-                        renderTo: "yandex_rtb_R-A-273127-1",
-                        async: true
-                    });
+{% endblock %}
+{% block keywords %}
+    <meta name="keywords" content="{{ book.keywords }}">
+{% endblock %}
+{% block description %}
+    <meta name="description" content="{{ book.desc_for_find }}">
+{% endblock %}
+{% block content %}
+    <br/>
+    <a href="#" class="btn btn-outline-secondary " onclick="history.back();"><i class="fa fa-reply"
+                                                                                aria-hidden="true"></i></i>&nbsp;Вернуться</a>
+    <br/>
+    <br/>
+    <h1>{{ book.title }}</h1>
+    <div id="yandex_rtb_R-A-273127-1"></div>
+    <script type="text/javascript">
+        (function (w, d, n, s, t) {
+            w[n] = w[n] || [];
+            w[n].push(function () {
+                Ya.Context.AdvManager.render({
+                    blockId: "R-A-273127-1",
+                    renderTo: "yandex_rtb_R-A-273127-1",
+                    async: true
                 });
-                t = d.getElementsByTagName("script")[0];
-                s = d.createElement("script");
-                s.type = "text/javascript";
-                s.src = "//an.yandex.ru/system/context.js";
-                s.async = true;
-                t.parentNode.insertBefore(s, t);
-            })(this, this.document, "yandexContextAsyncCallbacks");
-</script>
-<br/>
-<br/>
-{% if book.book_file %}
-<p><a href="{{ book.book_file.url }}" target="_blank" download="" class="btn btn-outline-secondary"><i class="fa fa-download" aria-hidden="true"></i><b>&nbsp;Скачать</b></a></p>
+            });
+            t = d.getElementsByTagName("script")[0];
+            s = d.createElement("script");
+            s.type = "text/javascript";
+            s.src = "//an.yandex.ru/system/context.js";
+            s.async = true;
+            t.parentNode.insertBefore(s, t);
+        })(this, this.document, "yandexContextAsyncCallbacks");
+    </script>
+    <br/>
+    <br/>
+    {% if book.book_file %}
+        <p><a href="{{ book.book_file.url }}" target="_blank" download="{{ book.title }}" class="btn btn-outline-secondary"><i
+                class="fa fa-download" aria-hidden="true"></i><b>&nbsp;Скачать</b></a></p>
     {% endif %}
     {% if book.book_file %}
-<object data="{{ book.book_file.url }}" type="application/pdf" width="100%" height="600px"></object>
+        <object data="{{ book.book_file.url }}" type="application/pdf" width="100%" height="600px"></object>
+
     {% endif %}
-<br/><br/>
-<p>{{ book.description }}</p>
-<br/><br/><br/>
-<table class="table">
-<thead>
-<tr>
-<th scope="row"><p>Если вам понравилась эта книга поделитесь ею с друзьями, тем самым вы помогаете нам развиваться и добавлять всё больше интересных и нужным вам книг!</p>
-</th>
-</thead>
-</table>
-<br/>
-<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-<script src="//yastatic.net/share2/share.js"></script>
-<div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
+    <br/><br/>
+    <p>{{ book.description }}</p>
+    <br/><br/><br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="row"><p>Если вам понравилась эта книга поделитесь ею с друзьями, тем самым вы помогаете нам
+                развиваться и добавлять всё больше интересных и нужным вам книг!</p>
+            </th>
+        </thead>
+    </table>
+    <br/>
+    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+    <script src="//yastatic.net/share2/share.js"></script>
+    <div class="ya-share2"
+         data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
 
 {% endblock %}
