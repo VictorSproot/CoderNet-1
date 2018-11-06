@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'booklist.apps.BooklistConfig',
     'video.apps.VideoConfig',
     'articles.apps.ArticlesConfig',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [

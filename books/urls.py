@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import main_page, search_books, search_articles, search_courses
+from .views import main_page, SearchView
 
 from django.contrib.sitemaps.views import sitemap
 from books.sitemaps import *
 
-from booklist.views import BookFeed
+from .views import Rss
 
 sitemaps = {
     'articles_category': ArticlesCategorySitemap,
@@ -35,11 +35,9 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('rss.xml', BookFeed(), name='book_rss_url'),
+    path('rss.xml', Rss(), name='rss_url'),
     path('admin/', admin.site.urls),
-    path('search_books/', search_books, name='search_books_url'),
-    path('search_articles/', search_articles, name='search_articles_url'),
-    path('search_courses/', search_courses, name='search_courses_url'),
+    path('search/', SearchView.as_view(), name='search_url'),
     path('', main_page, name='main_page_url'),
     path('books/', include('booklist.urls')),
     path('videos/', include('video.urls')),

@@ -1,0 +1,8 @@
+{% extends 'booklist/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    {% for object in objects %}
+        {{ object.title }} - {{ object.category.first }} <br>
+    {% endfor %}
+    {% bootstrap_pagination objects url=last_question %}
+{% endblock %}

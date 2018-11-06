@@ -3,51 +3,54 @@ from video.models import Course
 from articles.models import Articles
 from booklist.models import Book
 
+from django.shortcuts import render_to_response
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views import View
+
 
 def main_page(request):
     return render(request, 'booklist/home.html')
 
 
-def search_books(request):
-    search_query = request.GET.get('search', '')
-    if search_query:
-        books = Book.objects.filter(title__icontains=search_query)
-        if books:
-            context = {
-                'books': books,
-            }
-            return render(request, 'booklist/search_books.html', context=context)
-        else:
-            return render(request, 'booklist/search.html')  # По вашему запросу ничего не найдено
-    else:
-        return render(request, 'booklist/404.html')  # Вы ввели пустой запрос
+class SearchView(View):
+    template_name = 'booklist/search_new.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        question = request.GET.get('search')
+        if question is not None:
+            books = Book.objects.filter(title__icontains=question)
+            courses = Course.objects.filter(title__icontains=question)
+            articles = Articles.objects.filter(title__icontains=question)
+            objects = list(books) + list(courses) + list(articles)
+
+            context['last_question'] = '?search=%s' % question
+
+            current_page = Paginator(objects, 10)
+
+            page = request.GET.get('page')
+            try:
+                context['objects'] = current_page.page(page)
+            except PageNotAnInteger:
+                context['objects'] = current_page.page(1)
+            except EmptyPage:
+                context['objects'] = current_page.page(current_page.num_pages)
+        return render_to_response(template_name=self.template_name, context=context)
 
 
-def search_courses(request):
-    search_query = request.GET.get('search', '')
-    if search_query:
-        courses = Course.objects.filter(title__icontains=search_query)
-        if courses:
-            context = {
-                'courses': courses,
-            }
-            return render(request, 'booklist/search_courses.html', context=context)
-        else:
-            return render(request, 'booklist/search.html')  # По вашему запросу ничего не найдено
-    else:
-        return render(request, 'booklist/404.html')  # Вы ввели пустой запрос
+#  RSS лента
+from django.contrib.syndication.views import Feed
 
 
-def search_articles(request):
-    search_query = request.GET.get('search', '')
-    if search_query:
-        articles = Articles.objects.filter(title__icontains=search_query)
-        if articles:
-            context = {
-                'articles': articles
-            }
-            return render(request, 'booklist/search_articles.html', context=context)
-        else:
-            return render(request, 'booklist/search.html')  # По вашему запросу ничего не найдено
-    else:
-        return render(request, 'booklist/404.html')  # Вы ввели пустой запрос
+class Rss(Feed):
+    title = 'CoderNet Портал для помощи программистам'
+    description = 'Последние опубликованные книги'
+    link = '/'
+
+    def items(self):
+        qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
+        return qs
+
+    def item_title(self, item):
+        return item.title

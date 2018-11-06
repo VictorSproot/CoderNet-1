@@ -12,7 +12,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="icon" type="image/png" href="{% static "image/favicon.ico" %}">
-    <link rel="home" type="application/rss+xml" href="{% url 'book_rss_url' %}"/>
+    <link rel="home" type="application/rss+xml" href="{% url 'rss_url' %}"/>
     {% block keywords %}
         <meta name="keywords"
               content="Книги по программированию, скачать, pdf программирование, скачать pdf, библиотека программиста, архив книг, скачать книги бесплатно, книги программиста бесплатно, видеокурсы, уроки по программированию, статьи для программиста, помощь программисту">
@@ -45,7 +45,7 @@
                 </a></li>
             </ul>
             {% block search %}
-                <form class="form-inline my-2 my-lg-0" action="{% url 'search_books_url' %}">
+                <form class="form-inline my-2 my-lg-0" action="{% url 'search_url' %}">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="search">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><span class="fa fa-search"></span>

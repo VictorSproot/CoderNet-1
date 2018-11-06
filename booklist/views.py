@@ -105,25 +105,3 @@ def category_detail(request, slug):
         'paginator2': paginator2
     }
     return render(request, 'booklist/category_detail.html', context=context)
-
-
-#  RSS лента
-from django.contrib.syndication.views import Feed
-
-
-class BookFeed(Feed):
-    title = 'CoderNet Портал для помощи программистам'
-    description = 'Последние опубликованные книги'
-    link = '/'
-
-    def items(self):
-        qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
-        print(qs)
-        print()
-        print(qs[1].title)
-        print()
-        print(qs[1].lang_category)
-        return qs
-
-    def item_title(self, item):
-        return item.title
