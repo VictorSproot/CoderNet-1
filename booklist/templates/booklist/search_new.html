@@ -1,8 +1,67 @@
 {% extends 'booklist/base.html' %}
 {% load bootstrap4 %}
-{% block content %}
-    {% for object in objects %}
-        {{ object.title }} - {{ object.category.first }} <br>
-    {% endfor %}
-    {% bootstrap_pagination objects url=last_question %}
-{% endblock %}
+
+{% block page %}
+    {% block content %}<br>
+        <blockquote class="blockquote text-center">
+            <h2>Поиск по запросу "{{ question }}"</h2>
+        </blockquote>
+        <main role="main">
+            <div class="container">
+                {% for object in page_object %}
+
+                    <div class="media">
+
+                        <div class="media">
+                            {% if object.img_file %}<a href='{{ object.get_absolute_url }}'><img class="mr-3"
+                                                                                                 src="{{ object.img_file.url }}"
+                                                                                                 width="64px"
+                                                                                                 alt="{{ object.title }}"></a>{% endif %}
+
+                        </div>
+                        <div class="media-body">
+                            <h5><a href='{{ object.get_absolute_url }}'><p class='text-dark'>{{ object.title }} - {{ object.get_model_name }}</p></a>
+                            </h5>
+
+                            {% if object.description %}
+                                <a href='{{ object.get_absolute_url }}'><p
+                                        class='text-dark'>{{ object.description|truncatewords:20 }}</p></a>
+                                <span class="badge badge-secondary">{{ object.category.first }}</span>
+                            {% endif %}</div>
+                    </div>
+                    <hr>
+                    <br>
+                {% endfor %}
+
+                {% if is_paginated %}
+                    <div class="offset-md-3 col-6 mt-5 mb-5">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item {% if not prev_url %}disabled{% endif %}">
+                                    <a href="{{ prev_url }}" class="nav-link btn btn-outline-secondary">Назад</a>
+                                </li>&nbsp;
+                                {% for n in page_object.paginator.page_range %}
+                                    {% if page_object.number == n %}
+                                        <li class="page-item active">
+                                            <a class="nav-link btn btn-outline-secondary active"
+                                               href="{{ last_question }}&page={{ n }}">{{ n }}<span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>&nbsp;
+                                    {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                                        <li class="page-item">
+                                            <a class="nav-link btn btn-outline-secondary"
+                                               href="{{ last_question }}&page={{ n }}">{{ n }}</a>
+                                        </li>&nbsp;
+                                    {% endif %}
+                                {% endfor %}
+                                <li class="page-item {% if not next_url %}disabled{% endif %}">
+                                    <a href="{{ next_url }}" class="nav-link btn btn-outline-secondary">Вперёд</a>
+                                </li>&nbsp;
+                            </ul>
+                        </nav>
+                    </div>
+                {% endif %}
+
+            </div>
+        </main>
+    {% endblock %}{% endblock %}

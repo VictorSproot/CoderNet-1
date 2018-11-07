@@ -19,6 +19,9 @@ class Articles(models.Model):
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='Категория', blank=True)
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
 
+    def get_model_name(self):
+        return 'Статья'
+
     def get_absolute_url(self):
         cat_name = self.category.first().slug
         return reverse('article_detail_url', kwargs={'slug': self.slug, 'cat_name': cat_name})
@@ -30,6 +33,7 @@ class Articles(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
         ordering = ['-created']
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200, db_index=True, verbose_name='Категория')

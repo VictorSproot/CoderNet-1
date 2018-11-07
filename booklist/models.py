@@ -28,8 +28,11 @@ class Book(models.Model):
     lang_category = models.IntegerField(choices=CATEGORIES, default=1, db_index=True, verbose_name='Язык')
     book_file = models.FileField(upload_to=generate_filename, null=True, blank=True, verbose_name='Файл PDF')
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
-    created = models.DateTimeField(auto_now_add = True, null = True)
-    
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def get_model_name(self):
+        return 'Книга'
+
     def get_absolute_url(self):
         cat_name = self.category.first().slug
         return reverse('book_detail_url', kwargs={'slug': self.slug, 'cat_name': cat_name})
@@ -59,6 +62,3 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-
-
-

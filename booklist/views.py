@@ -52,7 +52,7 @@ def category_detail(request, slug):
     rus_books = Book.objects.filter(lang_category=1, category=category)
     books = Book.objects.filter(category=category)
     if not category:
-        return render(request, 'booklist/404.html', context={})
+        return render(request, 'booklist/../templates/404.html', context={})
 
     # Пагинатор начало
     paginator1 = Paginator(rus_books, 12)

@@ -24,6 +24,8 @@ from books.sitemaps import *
 
 from .views import Rss
 
+handler404 = 'books.views.error_404'
+
 sitemaps = {
     'articles_category': ArticlesCategorySitemap,
     'video_category': VideoCategorySitemap,
@@ -45,6 +47,7 @@ urlpatterns = [
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('summernote/', include('django_summernote.urls')),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

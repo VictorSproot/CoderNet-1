@@ -16,7 +16,8 @@ def generate_filename_jpg_video(instance, filename):
 class Video(models.Model):
     title = models.CharField(max_length=200, db_index=True, blank=True, verbose_name='Название')
     link = models.CharField(max_length=500, verbose_name='Ссылка на видео')
-    course = models.ForeignKey('Course', related_name='video', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Курс')
+    course = models.ForeignKey('Course', related_name='video', on_delete=models.CASCADE, null=True, blank=True,
+                               verbose_name='Курс')
     img_file_link = models.ImageField(upload_to=generate_filename_jpg_video, null=True, blank=True, verbose_name='IMG')
 
     def __str__(self):
@@ -35,7 +36,10 @@ class Course(models.Model):
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='courses', verbose_name='Категория')
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
-    created = models.DateTimeField(auto_now_add = True, null = True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def get_model_name(self):
+        return 'Курс'
 
     def get_absolute_url(self):
         cat_name = self.category.first().slug
