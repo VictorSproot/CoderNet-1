@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'booklist.apps.BooklistConfig',
     'video.apps.VideoConfig',
     'articles.apps.ArticlesConfig',
-    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -138,5 +137,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-INSTALLED_APPS += ('django_summernote', )
-SUMMERNOTE_THEME = 'bs4'
+INSTALLED_APPS += ('ckeditor', )
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'None',
+    }
+}

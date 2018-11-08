@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from ckeditor.fields import RichTextField
+
 
 def generate_filename_jpg(instance, filename):
     filename = instance.slug + '.jpg'
@@ -31,7 +33,7 @@ class Video(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=200, db_index=True, verbose_name='Название курса')
     slug = models.SlugField(max_length=200, verbose_name='Ссылка', unique=True)
-    description = models.TextField(blank=True, db_index=True, verbose_name='Описание')
+    description = RichTextField(blank=True, db_index=True, verbose_name='Описание')
     desc_for_find = models.TextField(blank=True, db_index=True, verbose_name='Описание для поиска')
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='courses', verbose_name='Категория')

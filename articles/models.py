@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -12,12 +14,13 @@ def generate_filename_jpg(instance, filename):
 class Articles(models.Model):
     title = models.CharField(max_length=300, db_index=True, verbose_name='Название статьи')
     slug = models.SlugField(max_length=300, verbose_name='Ссылка', unique=True)
-    body = models.TextField(blank=True, db_index=True, verbose_name='Описание')
+    body = RichTextField(blank=True, db_index=True, verbose_name='Описание')
     created = models.DateTimeField(auto_now_add=True)
     desc_for_find = models.TextField(blank=True, db_index=True, verbose_name='Описание для поиска')
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='Категория', blank=True)
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
+    attribution = models.CharField(max_length=300, db_index=True, verbose_name='Ссылка на источник')
 
     def get_model_name(self):
         return 'Статья'

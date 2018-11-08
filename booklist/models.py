@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from ckeditor.fields import RichTextField
+
 CATEGORIES = (
     (1, 'Русский'),
     (2, 'Английский')
@@ -21,7 +23,7 @@ def generate_filename_jpg(instance, filename):
 class Book(models.Model):
     title = models.CharField(max_length=200, db_index=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, db_index=True, unique=True, verbose_name='Ссылка')
-    description = models.TextField(blank=True, db_index=True, verbose_name='Описание')
+    description = RichTextField(blank=True, db_index=True, verbose_name='Описание')
     desc_for_find = models.TextField(blank=True, db_index=True, verbose_name='Описание для поиска')
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='books', verbose_name='Категория')
