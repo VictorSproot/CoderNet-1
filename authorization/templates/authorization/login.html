@@ -1,0 +1,22 @@
+{% extends 'booklist/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block content %}
+
+
+    <form action="{% url 'login_url' %}" method="post">
+        {{ form.error }}
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-secondary" type="submit" name="button">Войти</button>
+
+    </form>
+
+
+{% endblock %}
+
+

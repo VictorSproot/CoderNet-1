@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'booklist.apps.BooklistConfig',
     'video.apps.VideoConfig',
     'articles.apps.ArticlesConfig',
+    'crispy_forms',
+    'authorization.apps.AuthorizationConfig'
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,5 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'None',
     }
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
