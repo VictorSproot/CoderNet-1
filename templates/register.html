@@ -1,0 +1,31 @@
+{% extends 'booklist/base.html' %}
+
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+<li class="list-group-item">
+    <h4 class="text-md-center">Регистрация</h4>
+</li>
+    <form action="{% url 'register_url' %}" method="post">
+        {{ user_form.error }}
+        {% csrf_token %}
+        {% for field in user_form %}
+            {{ field.label }}<br>
+            {{ field }}<br>
+            <hr>
+        {% endfor %}
+
+        <button class="btn btn-secondary" type="submit" name="button">Регистрация</button>
+    </form>
+{% endblock %}
+
+{% block categories %}
+    <li class="list-group-item list-group-item-secondary"><b>Категории</b></li>
+    {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}"
+           class="list-group-item list-group-item-action">{{ category.title }}</a>
+    {% endfor %}
+{% endblock %}

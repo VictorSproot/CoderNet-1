@@ -27,7 +27,7 @@ from .views import Rss
 from django.contrib.auth import logout
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
-from authorization.views import LoginView
+from authorization.views import LoginView, register
 
 handler404 = 'books.views.error_404'
 
@@ -43,7 +43,7 @@ sitemaps = {
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login_url'),
-    path('logout/', LogoutView.as_view(next_page=reverse_lazy('book_list_url')), name='logout_url'),
+    path('logout/', LogoutView.as_view(next_page=reverse_lazy('main_page_url')), name='logout_url'),
     path('rss.xml', Rss(), name='rss_url'),
     path('admin/', admin.site.urls),
     path('search/', SearchView.as_view(), name='search_url'),
@@ -52,6 +52,7 @@ urlpatterns = [
     path('videos/', include('video.urls')),
     path('articles/', include('articles.urls')),
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('register/', register, name='register_url')
 ]
 
 
