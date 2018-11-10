@@ -10,13 +10,19 @@ class ObjectDetailMixin:
     model = None
     template = None
     detail_admin_panel = None
+    comment_model = None
+    form_comments = None
 
     def get(self, request, **kwargs):
         obj = get_object_or_404(self.model, slug=kwargs['slug'])
+        comments = self.comment_model.objects.filter(comment_article__slug__iexact=kwargs['slug'])
+        form_comments = self.form_comments
 
         context = {
             self.model.__name__.lower(): obj,
-            'categories': Category.objects.all()
+            'categories': Category.objects.all(),
+            'comments': comments,
+            'form_comments': form_comments,
         }
 
         return render(request, self.template, context=context)

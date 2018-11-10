@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from django.contrib.auth.models import User
+
 from ckeditor.fields import RichTextField
 
 
@@ -71,3 +73,17 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+
+class Comments(models.Model):
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    comment_author_course = models.ForeignKey(User, on_delete=models.CASCADE, default=None, related_name='comments_course')
+    comment_text = models.TextField(verbose_name='Добавить комментарий')
+    comment_article = models.ForeignKey(Course, on_delete=models.CASCADE)
+    comment_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'Author --> {}; course --> {}; text --> {}'.format(self.comment_author_course, self.comment_article, self.comment_text)

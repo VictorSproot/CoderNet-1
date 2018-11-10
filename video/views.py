@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator
+from django.shortcuts import redirect
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -73,8 +75,23 @@ def category_detail(request, slug):
 def course_detail(request, **kwargs):
     categories = Category.objects.all()
     course = Course.objects.get(slug=kwargs['slug'])
+    comments = Comments.objects.filter(comment_article__slug__iexact=kwargs['slug'])
+    form_comments = CommentForm
     context = {
+        'comments': comments,
+        'form_comments': form_comments,
         'categories': categories,
         'course': course
     }
     return render(request, 'video/course_detail.html', context=context)
+
+
+def addcomment(request, slug):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.comment_author_course = request.user
+            comment.comment_article = Course.objects.get(slug__iexact=slug)
+            form.save()
+    return redirect(Course.objects.get(slug__iexact=slug))

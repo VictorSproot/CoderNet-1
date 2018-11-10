@@ -54,7 +54,7 @@
     {% if request.user.is_authenticated %}
         <li class="list-group-item">
             <h3>Добавить комменарий</h3>
-            <form class="mt-3" action="{% url 'addcomment' slug=article.slug %}" method="post">
+            <form class="mt-3" action="{% url 'addcomment_article' slug=article.slug %}" method="post">
                 {% csrf_token %}
 
                 {% for field in form_comments %}

@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from video.models import Course
 from articles.models import Articles
 
+from .forms import CommentForm
+
 
 # Create your views here.
 def book_list(request):
@@ -43,6 +45,8 @@ def book_list(request):
 class BookDetail(ObjectDetailMixin, View):
     model = Book
     template = 'booklist/book_detail.html'
+    comment_model = Comments
+    form_comments = CommentForm
 
 
 def category_detail(request, slug):
@@ -105,3 +109,14 @@ def category_detail(request, slug):
         'paginator2': paginator2
     }
     return render(request, 'booklist/category_detail.html', context=context)
+
+
+def addcomment(request, slug):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.comment_author_book = request.user
+            comment.comment_article = Book.objects.get(slug__iexact=slug)
+            form.save()
+    return redirect(Book.objects.get(slug__iexact=slug))
