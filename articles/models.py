@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 
+from django.contrib.auth.models import User
+
 from ckeditor.fields import RichTextField
 
 
@@ -20,7 +22,7 @@ class Articles(models.Model):
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='Категория', blank=True)
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
-    attribution = models.CharField(max_length=300, db_index=True, verbose_name='Ссылка на источник')
+    attribution = models.CharField(max_length=300, db_index=True, verbose_name='Ссылка на источник', default=' ')
 
     def get_model_name(self):
         return 'Статья'
@@ -53,3 +55,17 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Категории'
         verbose_name = 'Категория'
+
+
+class Comments(models.Model):
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    comment_author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    comment_text = models.TextField(verbose_name='Добавить комментарий')
+    comment_article = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    comment_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'Author --> {}; post --> {}; text --> {}'.format(self.comment_author, self.comment_article, self.comment_text)

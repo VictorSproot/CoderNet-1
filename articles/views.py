@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator
 
+from .forms import CommentForm
+from django.shortcuts import redirect
+
 
 # Create your views here.
 def articles_list(request):
@@ -39,9 +42,13 @@ def articles_list(request):
 def article_detail(request, **kwargs):
     article = Articles.objects.get(slug__iexact=kwargs['slug'])
     categories = Category.objects.all()
+    comments = Comments.objects.filter(comment_article__slug__iexact=kwargs['slug'])
+    form_comments = CommentForm
     context = {
         'article': article,
-        'categories': categories
+        'categories': categories,
+        'comments': comments,
+        'form_comments': form_comments,
     }
     return render(request, 'articles/article_detail.html', context=context)
 
@@ -78,3 +85,14 @@ def category_detail(request, slug):
         'articles': articles
     }
     return render(request, 'articles/category_list.html', context=context)
+
+
+def addcomment(request, slug):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.comment_author = request.user
+            comment.comment_article = Articles.objects.get(slug__iexact=slug)
+            form.save()
+    return redirect(Articles.objects.get(slug__iexact=slug))
