@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'booklist.apps.BooklistConfig',
     'video.apps.VideoConfig',
     'articles.apps.ArticlesConfig',
-    'crispy_forms',
     'authorization.apps.AuthorizationConfig'
 ]
 
