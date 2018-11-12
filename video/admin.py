@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Video)
 admin.site.register(Course)
 admin.site.register(Category)
+admin.site.register(Comments)

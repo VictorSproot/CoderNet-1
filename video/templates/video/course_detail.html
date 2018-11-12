@@ -68,7 +68,7 @@
         <div class="text"><h3>Коментарии</h3></div>
         {% for comment in comments %}
             <hr>
-            <div class="text-md"><h5>{{ comment.comment_author_book }}</h5></div>
+            <div class="text-md"><h5>{{ comment.comment_author_course }}</h5></div>
             {{ comment.comment_text }} <br>
             <div class="text">{{ comment.comment_created }}</div>  <br>
         {% endfor %}
