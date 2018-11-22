@@ -25,7 +25,7 @@ SECRET_KEY = '%0(8lsj)k9t4dw@=5gsjir)gog5&g#9-7(bcgg)5s*z@s3w^+5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['https://codernet.ru', '185.224.135.70', 'localhost']
 
 
 # Application definition
@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'books.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_db',
-        'USER': 'neverdie',
-        'PASSWORD': 'ee33rr44',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'codernet',
+        'USER': 'codernet',
+        'PASSWORD': 'l4LWXocD375296667466',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
