@@ -8,7 +8,7 @@ from django.views import View
 
 
 def main_page(request):
-    return render(request, 'booklist/home.html')
+    return render(request, 'home.html')
 
 
 class SearchView(View):
@@ -75,3 +75,7 @@ class Rss(Feed):
 
 def error_404(request, exception, template_name='404.html'):
     return render(request, template_name, status=404)
+
+
+def account_detail(request):
+    return render(request, 'account.html')

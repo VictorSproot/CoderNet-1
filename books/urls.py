@@ -22,7 +22,7 @@ from .views import main_page, SearchView
 from django.contrib.sitemaps.views import sitemap
 from books.sitemaps import *
 
-from .views import Rss
+from .views import Rss, account_detail
 
 from django.contrib.auth import logout
 from django.contrib.auth.views import LogoutView
@@ -52,7 +52,8 @@ urlpatterns = [
     path('videos/', include('video.urls')),
     path('articles/', include('articles.urls')),
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    path('register/', register, name='register_url')
+    path('register/', register, name='register_url'),
+    path('account/', account_detail, name='account_url')
 ]
 
 

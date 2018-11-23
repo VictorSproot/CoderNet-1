@@ -25,7 +25,7 @@ SECRET_KEY = '%0(8lsj)k9t4dw@=5gsjir)gog5&g#9-7(bcgg)5s*z@s3w^+5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://codernet.ru', '185.224.135.70', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,8 +85,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'codernet',
-        'USER': 'codernet',
-        'PASSWORD': 'l4LWXocD375296667466',
+        'USER': 'neverdie',
+        'PASSWORD': 'ee33rr44',
         'HOST': 'localhost',
         'PORT': '',
     }
