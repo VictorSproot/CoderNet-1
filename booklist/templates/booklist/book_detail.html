@@ -1,4 +1,4 @@
-{% extends 'booklist/booklist.html' %}
+{% extends 'base.html' %}
 {% block title %}
     {{ book.title }}
 {% endblock %}
@@ -7,11 +7,16 @@
 {% endblock %}
 {% block description %}
     <meta name="description" content="{{ book.desc_for_find }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ book.title }}">
+<meta property="og:url" content="http://185.224.135.70/{{ book.get_absolute_url }}">
+<meta property="og:description" name="description" content="{{ book.desc_for_find }}">
+<meta property="og:image" content="{{ book.img_file.url }}">
 {% endblock %}
 {% block content %}
     <br/>
-    <a href="#" class="btn btn-outline-secondary " onclick="history.back();"><i class="fa fa-reply"
-                                                                                aria-hidden="true"></i></i>&nbsp;Вернуться</a>
+    <a href="#" class="btn btn-outline-secondary " onclick="history.back();">
+        <i class="fa fa-reply" aria-hidden="true"></i></i>&nbsp;Вернуться</a>
     <br/>
     <br/>
     <h1>{{ book.title }}</h1>
@@ -47,21 +52,38 @@
     {% endif %}
     <br/><br/>
     <p>{{ book.description }}</p>
-    <br/><br/><br/>
-
-    <li class="list-group-item">
+    <br/><br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="row"><p>Если вам понравилась эта книга поделитесь ею с друзьями, тем самым вы помогаете нам
+                развиваться и добавлять всё больше интересных и нужным вам книг!</p>
+            </th>
+        </thead>
+    </table>
+    <br/>
+    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+    <script src="//yastatic.net/share2/share.js"></script>
+    <div class="ya-share2"
+         data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
+<br/>   
         <div class="text"><h3>Коментарии</h3></div>
         {% for comment in comments %}
             <hr>
-            <div class="text-md"><h5>{{ comment.comment_author_book }}</h5></div>
-            {{ comment.comment_text }} <br>
-            <div class="text">{{ comment.comment_created }}</div>  <br>
+<ul class="list-unstyled">
+<li class="media">
+  <img src="{{ book.img_file.url }}" width="75px" alt="Generic placeholder image" class="rounded">
+ &nbsp;&nbsp;&nbsp;<div class="media-body">
+    <h5 class="mt-0">{{ comment.comment_author_book }}</h5>
+   {{ comment.comment_text|safe }}<br/>
+    <span class="badge badge-light">{{ comment.comment_created}}</span>
+  </div>
+</li>
+</ul>
+<hr>
         {% endfor %}
-    </li>
-
-
     {% if request.user.is_authenticated %}
-        <li class="list-group-item">
+        
             <h3>Добавить комменарий</h3>
             <form class="mt-3" action="{% url 'addcomment_book' slug=book.slug %}" method="post">
                 {% csrf_token %}
@@ -77,21 +99,13 @@
 
                 <button class="mt-3 btn btn-secondary" type="submit" name="button">Добавить комментарий</button>
             </form>
-        </li>
+       
     {% endif %}
+{% if not request.user.is_authenticated %}
+ <div class="alert alert-secondary" role="alert">
+Что бы оставлять комментарии <a href="/login">войдите</a> или <a href="/register">зарегистрируйтесь</a>
+</div>
+{% endif %} 
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="row"><p>Если вам понравилась эта книга поделитесь ею с друзьями, тем самым вы помогаете нам
-                развиваться и добавлять всё больше интересных и нужным вам книг!</p>
-            </th>
-        </thead>
-    </table>
-    <br/>
-    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-    <script src="//yastatic.net/share2/share.js"></script>
-    <div class="ya-share2"
-         data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
 
 {% endblock %}
