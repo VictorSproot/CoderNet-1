@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -19,7 +19,7 @@
     {% endblock %}
     {% block description %}
         <meta name="description"
-              content="CoderNet это самая большая и бесплатная библиотека, огромный сборник видеокурсов и статьи о программировании для начинающего и опытного программиста">
+              content="CoderNet это самая большая и бесплатная библиотека о программировании для начинающего и опытного программиста">
     {% endblock %}
     <title>
         {% block title %}
@@ -36,34 +36,11 @@
             <span class="fa fa-search"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="{% url 'book_list_url' %}"><h5>&nbsp;&nbsp;Книги&nbsp;&nbsp;</h5>
-                </a></li>
-                <li class="nav-item active"><a class="nav-link" href="{% url 'category_video_list_url' %}"><h5>&nbsp;&nbsp;Видео&nbsp;&nbsp;</h5>
-                </a></li>
-                <li class="nav-item active"><a class="nav-link" href="{% url 'articles_list_url' %}"><h5>&nbsp;&nbsp;Статьи&nbsp;&nbsp;</h5>
-                </a></li>
-
-                {% if not request.user.is_authenticated %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'register_url' %}"><h5>&nbsp;&nbsp;Регистрация&nbsp;&nbsp;</h5>
-                    </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'login_url' %}"><h5>&nbsp;&nbsp;Войти&nbsp;&nbsp;</h5>
-                    </a></li>
-                {% endif %}
-
-                {% if request.user.is_authenticated %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'account_url' %}"><h5>&nbsp;&nbsp;Личный кабинет&nbsp;&nbsp;</h5>
-                    </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'logout_url' %}"><h5>&nbsp;&nbsp;Выйти&nbsp;&nbsp;</h5>
-                    </a></li>
-                {% endif %}
-
-            </ul>
-            {% block search %}
+            {% block search %}     
                 <form class="form-inline my-2 my-lg-0" action="{% url 'search_url' %}">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><span class="fa fa-search"></span>
+                    <button class="btn btn-outline-light my-2 my-sm-0 " type="submit"><span class="fa fa-search"></span>
                     </button>
                 </form>
             {% endblock %}
