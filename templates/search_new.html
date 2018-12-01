@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+    {% block title %}
+    Поиск по запросу {{ question }}
+    {% endblock %} | CoderNet
 {% block page %}
     {% block content %}<br>
         <blockquote class="blockquote text-center">
@@ -7,6 +9,31 @@
         </blockquote>
         <main role="main">
             <div class="container">
+                
+                   {% if not page_object %} 
+<div id="yandex_rtb_R-A-273127-1"></div>
+    <script type="text/javascript">
+        (function (w, d, n, s, t) {
+            w[n] = w[n] || [];
+            w[n].push(function () {
+                Ya.Context.AdvManager.render({
+                    blockId: "R-A-273127-1",
+                    renderTo: "yandex_rtb_R-A-273127-1",
+                    async: true
+                });
+            });
+            t = d.getElementsByTagName("script")[0];
+            s = d.createElement("script");
+            s.type = "text/javascript";
+            s.src = "//an.yandex.ru/system/context.js";
+            s.async = true;
+            t.parentNode.insertBefore(s, t);
+        })(this, this.document, "yandexContextAsyncCallbacks");
+    </script>
+<br/>
+<div class="alert alert-light" role="alert"><h3>По Вашему запросу "{{ question }}" ничего не найдено, попробуйте изменить запрос</h3></div>
+    {% endif %} 
+                
                 {% for object in page_object %}
 
                     <div class="media">
@@ -24,7 +51,7 @@
 
                             {% if object.description %}
                                 <a href='{{ object.get_absolute_url }}'><p
-                                        class='text-dark'>{{ object.description|truncatewords:20 }}</p></a>
+                                        class='text-dark'>{% autoescape off %}{{ object.description|truncatewords:20 }}{% endautoescape %}</p></a>
                                 <span class="badge badge-secondary">{{ object.category.first }}</span>
                             {% endif %}</div>
                     </div>
