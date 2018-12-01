@@ -7,11 +7,13 @@
 {% endblock %}
 {% block description %}
     <meta name="description" content="{{ book.desc_for_find }}">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ book.title }}">
-<meta property="og:url" content="http://185.224.135.70/{{ book.get_absolute_url }}">
-<meta property="og:description" name="description" content="{{ book.desc_for_find }}">
-<meta property="og:image" content="{{ book.img_file.url }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ book.title }}">
+    <meta property="og:url" content="http://185.224.135.70/{{ book.get_absolute_url }}">
+    <meta property="og:description" name="description" content="{{ book.desc_for_find }}">
+    {% if book.img_file %}
+        <meta property="og:image" content="{{ book.img_file.url }}">
+    {% endif %}
 {% endblock %}
 {% block content %}
     <br/>
@@ -48,7 +50,6 @@
     {% endif %}
     {% if book.book_file %}
         <object data="{{ book.book_file.url }}" type="application/pdf" width="100%" height="600px"></object>
-
     {% endif %}
     <br/><br/>
     <p>{{ book.description }}</p>
@@ -66,7 +67,7 @@
     <script src="//yastatic.net/share2/share.js"></script>
     <div class="ya-share2"
          data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
-<br/>   
+    <br/>
 
 
 

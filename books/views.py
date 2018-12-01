@@ -12,7 +12,7 @@ def main_page(request):
 
 
 class SearchView(View):
-    template_name = 'booklist/search_new.html'
+    template_name = 'search_new.html'
 
     def get(self, request, *args, **kwargs):
 
