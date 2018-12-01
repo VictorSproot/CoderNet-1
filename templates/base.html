@@ -19,7 +19,7 @@
     {% endblock %}
     {% block description %}
         <meta name="description"
-              content="CoderNet это самая большая и бесплатная библиотека, огромный сборник видеокурсов и статьи о программировании для начинающего и опытного программиста">
+              content="CoderNet это самая большая и бесплатная библиотека о программировании для начинающего и опытного программиста">
     {% endblock %}
     <title>
         {% block title %}
@@ -36,39 +36,6 @@
             <span class="fa fa-search"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="{% url 'book_list_url' %}"><h5>&nbsp;&nbsp;Книги&nbsp;&nbsp;</h5>
-                </a></li>
-                <li class="nav-item active"><a class="nav-link" href="{% url 'category_video_list_url' %}"><h5>&nbsp;&nbsp;Видео&nbsp;&nbsp;</h5>
-                </a></li>
-                <li class="nav-item active"><a class="nav-link" href="{% url 'articles_list_url' %}"><h5>&nbsp;&nbsp;Статьи&nbsp;&nbsp;</h5>
-                </a></li>
-
-
-
-            </ul>
-<ul class="navbar-nav justify-content-end">
- 
-<div class="dropdown">
-  <button class="btn btn-dark dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="fa fa-user-circle fa-2x"></span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-{% if request.user.is_authenticated %}
-    <a class="dropdown-item" href="#">Личный кабинет</a>
-    <a class="dropdown-item" href="{% url 'logout_url' %}">Выйти</a>
-
-{% endif %}
-{% if not request.user.is_authenticated %}
-    <a class="dropdown-item" href="{% url 'login_url' %}">Войти</a>
-    <a class="dropdown-item" href="{% url 'register_url' %}">Регистрация</a>
-{% endif %}    
-  </div>
-</div>
-    <div class="col-4">
-      
-    </div>
-  </ul>
             {% block search %}     
                 <form class="form-inline my-2 my-lg-0" action="{% url 'search_url' %}">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
