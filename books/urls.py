@@ -47,7 +47,7 @@ urlpatterns = [
     path('rss.xml', Rss(), name='rss_url'),
     path('admin/', admin.site.urls),
     path('search/', SearchView.as_view(), name='search_url'),
-    # path('', main_page, name='main_page_url'),
+    path('', main_page, name='main_page_url'),
     path('books/', include('booklist.urls')),
     # path('videos/', include('video.urls')),
     # path('articles/', include('articles.urls')),
