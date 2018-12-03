@@ -32,12 +32,12 @@ from authorization.views import LoginView, register
 handler404 = 'books.views.error_404'
 
 sitemaps = {
-    'articles_category': ArticlesCategorySitemap,
-    'video_category': VideoCategorySitemap,
+    # 'articles_category': ArticlesCategorySitemap,
+    # 'video_category': VideoCategorySitemap,
     'books_category': BookCategorySitemap,
     'books': BookSitemap,
-    'courses': CourseSitemap,
-    'articles': ArticleSitemap,
+    # 'courses': CourseSitemap,
+    # 'articles': ArticleSitemap,
     'static': StaticViewSitemap
 }
 
