@@ -17,6 +17,8 @@ class SearchView(View):
     def get(self, request, *args, **kwargs):
 
         question = request.GET.get('search')
+        if not question or len(question) < 3:
+            return render(request, 'search_error.html')
         if question is not None:
             books = Book.objects.filter(title__icontains=question)
             courses = Course.objects.filter(title__icontains=question)
