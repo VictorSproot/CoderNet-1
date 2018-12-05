@@ -64,7 +64,6 @@
     </div>
     {% if paginator1.count > paginator2.count %}
         {% if is_paginated1 %}
-            <div class="offset-md-3 col-6 mt-5 mb-5">
                 <nav aria-label="...">
                     <ul class="pagination justify-content-center">
                         <li class="page-item {% if not prev_url1 %}disabled{% endif %}">
@@ -87,12 +86,10 @@
                         </li>&nbsp;
                     </ul>
                 </nav>
-            </div>
         {% endif %}
     {% endif %}
     {% if paginator1.count < paginator2.count %}
         {% if is_paginated2 %}
-            <div class="offset-md-3 col-6 mt-5 mb-5">
                 <nav aria-label="...">
                     <ul class="pagination justify-content-center">
                         <li class="page-item {% if not prev_url2 %}disabled{% endif %}">
@@ -115,7 +112,6 @@
                         </li>&nbsp;
                     </ul>
                 </nav>
-            </div>
         {% endif %}
     {% endif %}
 {% endblock %}
