@@ -95,14 +95,14 @@
             <div class="offset-md-3 col-6 mt-5 mb-5">
                 <nav aria-label="...">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item {% if not prev_url12 %}disabled{% endif %}">
+                        <li class="page-item {% if not prev_url2 %}disabled{% endif %}">
                             <a href="{{ prev_url2 }}" class="nav-link btn btn-outline-secondary">Назад</a>
-                        </li>
+                        </li>&nbsp;
                         {% for n in page_object2.paginator.page_range %}
                             {% if page_object2.number == n %}
                                 <li class="page-item active">
-                                    <a class="nav-link btn btn-outline-secondary" href="?page={{ n }}">{{ n }}<span
-                                            class="sr-only">(current)</span></a>
+                                    <a class="nav-link btn btn-outline-secondary active"
+                                       href="?page={{ n }}">{{ n }}<span class="sr-only">(current)</span></a>
                                 </li>&nbsp;
                             {% elif n > page_object2.number|add:-3 and n < page_object2.number|add:3 %}
                                 <li class="page-item">
