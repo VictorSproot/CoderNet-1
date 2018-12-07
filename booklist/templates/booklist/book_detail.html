@@ -9,7 +9,7 @@
     <meta name="description" content="{{ book.desc_for_find }}">
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ book.title }}">
-    <meta property="og:url" content="http://185.224.135.70/{{ book.get_absolute_url }}">
+    <meta property="og:url" content="https://codernet.ru/{{ book.get_absolute_url }}">
     <meta property="og:description" name="description" content="{{ book.desc_for_find }}">
     {% if book.img_file %}
         <meta property="og:image" content="{{ book.img_file.url }}">
@@ -22,7 +22,7 @@
     <br/>
     <br/>
     <h1>{{ book.title }}</h1>
-<div class="col-sm-9">
+<div class="col-sm-12">
     <div id="yandex_rtb_R-A-273127-1"></div>
     <script type="text/javascript">
         (function (w, d, n, s, t) {
@@ -43,7 +43,6 @@
         })(this, this.document, "yandexContextAsyncCallbacks");
     </script>
     </div>
-    <br/>
     <br/>
     {% if book.book_file %}
         <p><a href="{{ book.book_file.url }}" target="_blank" download="{{ book.title }}.pdf"
