@@ -8,15 +8,17 @@ from django.views import View
 
 
 def main_page(request):
-    return render(request, 'home.html')
+    return redirect('/books')
 
 
 class SearchView(View):
-    template_name = 'booklist/search_new.html'
+    template_name = 'search_new.html'
 
     def get(self, request, *args, **kwargs):
 
         question = request.GET.get('search')
+        if not question or len(question) < 3:
+            return render(request, 'search_error.html')
         if question is not None:
             books = Book.objects.filter(title__icontains=question)
             courses = Course.objects.filter(title__icontains=question)
@@ -64,7 +66,8 @@ class Rss(Feed):
     link = '/'
 
     def items(self):
-        qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
+        # qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
+        qs = Book.objects.all()
         return qs
 
     def item_title(self, item):
