@@ -53,7 +53,8 @@ urlpatterns = [
     # path('articles/', include('articles.urls')),
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # path('register/', register, name='register_url'),
-    # path('account/', account_detail, name='account_url')
+    # path('account/', account_detail, name='account_url'),
+    path('robots.txt$', 'books.app.views.robots'),
 ]
 
 
