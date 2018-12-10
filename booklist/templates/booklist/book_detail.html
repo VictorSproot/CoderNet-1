@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block lang %}{% if book.lang_category == 1 %}<html lang="ru">{% endif %}{% if book.lang_category == 2 %}<html lang="en">{% endif %}{% endblock %}
 {% block title %}
     {{ book.title }}
 {% endblock %}
