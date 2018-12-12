@@ -82,3 +82,4 @@ def error_404(request, exception, template_name='404.html'):
 
 def account_detail(request):
     return render(request, 'account.html')
+
