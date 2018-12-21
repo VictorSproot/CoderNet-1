@@ -56,7 +56,7 @@
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
-                    <li class="nav-item active"><a class="nav-link" href="#"><h5>&nbsp;&nbsp;Личный кабинет&nbsp;&nbsp;</h5>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'account_url' %}"><h5>&nbsp;&nbsp;Личный кабинет&nbsp;&nbsp;</h5>
                     </a></li>
                     <li class="nav-item active"><a class="nav-link" href="{% url 'logout_url' %}"><h5>&nbsp;&nbsp;Выйти&nbsp;&nbsp;</h5>
                     </a></li>
