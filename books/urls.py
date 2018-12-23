@@ -32,28 +32,28 @@ from authorization.views import LoginView, register
 handler404 = 'books.views.error_404'
 
 sitemaps = {
-    'articles_category': ArticlesCategorySitemap,
-    'video_category': VideoCategorySitemap,
+    # 'articles_category': ArticlesCategorySitemap,
+    # 'video_category': VideoCategorySitemap,
     'books_category': BookCategorySitemap,
     'books': BookSitemap,
-    'courses': CourseSitemap,
-    'articles': ArticleSitemap,
+    # 'courses': CourseSitemap,
+    # 'articles': ArticleSitemap,
     'static': StaticViewSitemap
 }
 
 urlpatterns = [
-    path('login/', LoginView.as_view(), name='login_url'),
-    path('logout/', LogoutView.as_view(next_page=reverse_lazy('main_page_url')), name='logout_url'),
+    # path('login/', LoginView.as_view(), name='login_url'),
+    # path('logout/', LogoutView.as_view(next_page=reverse_lazy('main_page_url')), name='logout_url'),
     path('rss.xml', Rss(), name='rss_url'),
     path('admin/', admin.site.urls),
     path('search/', SearchView.as_view(), name='search_url'),
     path('', main_page, name='main_page_url'),
     path('books/', include('booklist.urls')),
-    path('videos/', include('video.urls')),
-    path('articles/', include('articles.urls')),
+    # path('videos/', include('video.urls')),
+    # path('articles/', include('articles.urls')),
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    path('register/', register, name='register_url'),
-    path('account/', account_detail, name='account_url')
+    # path('register/', register, name='register_url'),
+    # path('account/', account_detail, name='account_url')
 ]
 
 
