@@ -8,7 +8,7 @@ from django.views import View
 
 
 def main_page(request):
-    return render(request, 'home.html')
+    return redirect('/books')
 
 
 class SearchView(View):
@@ -66,7 +66,8 @@ class Rss(Feed):
     link = '/'
 
     def items(self):
-        qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
+        # qs = list(Book.objects.all()) + list(Course.objects.all()) + list(Articles.objects.all())
+        qs = Book.objects.all()
         return qs
 
     def item_title(self, item):
