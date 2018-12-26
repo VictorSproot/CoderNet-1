@@ -33,50 +33,43 @@
             t.parentNode.insertBefore(s, t);
         })(this, this.document, "yandexContextAsyncCallbacks");
     </script>
-    {{ course.description }}
+    {% autoescape off %}{{ course.description }}{% endautoescape %}
     <hr>
     <div class="row">
         {% for video in course.video.all %}
             <div class="col-lg-4 col-md-12 mb-4">
-                <div class="modal fade" id="modal{{ video.title }}" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body mb-0 p-0">
-                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                                    <iframe class="embed-responsive-item" src="{{ video.link }}"
-                                            allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                                <span class="mr-4">{{ video.title }}</span>
-                                <button type="button" class="nav-link btn btn-outline-secondary" data-dismiss="modal">
-                                    Закрыть
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#"><img class="img-fluid z-depth-1"
-                                 src="{% if video.img_file_link %} {{ video.img_file_link.url }} {% endif %}"
+
+<script>
+function myWindow1() {
+    var myWindow1 = window.open('', 'myWindow1', 'scrollbars=1,height='+Math.min(480, screen.availHeight)+',width='+Math.min(853, screen.availWidth));
+    myWindow1.document.write('<title>{{ video.title }}</title><iframe width="100%" height="100%" src="{{ video.link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  </scr' + 'ipt>');
+}
+</script>
+
+
+                <a href="#" onclick="myWindow1()" id="raz"><img class="img-fluid z-depth-1"
+                                 src="{% if video.img_file_link %}{{ video.img_file_link.url }}{% endif %}"
                                  alt="video" data-toggle="modal" data-target="#modal{{ video.title }}"></a>
                 <span>{{ video.title }}</span>
             </div>
-        {% endfor %}
+        {% endfor %} </div>
+<br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="row"><p>Если вам понравилась эта статья поделитесь ею с друзьями, тем самым вы помогаете нам
+                развиваться и добавлять всё больше интересного и полезного контента!</p>
+            </th>
+        </thead>
+    </table>
+    <br/>
+    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+    <script src="//yastatic.net/share2/share.js"></script>
+    <div class="ya-share2"
+         data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div><br/>
 
-    <li class="list-group-item">
-        <div class="text"><h3>Коментарии</h3></div>
-        {% for comment in comments %}
-            <hr>
-            <div class="text-md"><h5>{{ comment.comment_author_course }}</h5></div>
-            {{ comment.comment_text }} <br>
-            <div class="text">{{ comment.comment_created }}</div>  <br>
-        {% endfor %}
-    </li>
-
-
-    {% if request.user.is_authenticated %}
-        <li class="list-group-item">
+ {% if request.user.is_authenticated %}
+       
             <h3>Добавить комменарий</h3>
             <form class="mt-3" action="{% url 'addcomment_course' slug=course.slug %}" method="post">
                 {% csrf_token %}
@@ -92,13 +85,25 @@
 
                 <button class="mt-3 btn btn-secondary" type="submit" name="button">Добавить комментарий</button>
             </form>
-        </li>
+        
     {% endif %}
 
-    </div>
-    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-    <script src="//yastatic.net/share2/share.js"></script>
-    <div class="ya-share2"
-         data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div>
-{% endblock %}
+<hr>
+    
+        <div class="text"><h3>Коментарии</h3></div>
+        {% for comment in comments %}
+<div class="media">
+            <hr>  <img class="mr-3" src="{{ request.user.profile.picture.url }}"  alt="Generic placeholder image" width="100px">
+<div class="media-body">
+            <h5 class="mt-0">{{ comment.comment_author }}</h5>
+            {{ comment.comment_text }} <br>
+            <div class="text">{{ comment.comment_created }}</div> </div>  <br>
+<hr>
+        {% endfor %}
 
+</div>
+
+    
+
+
+{% endblock %}
