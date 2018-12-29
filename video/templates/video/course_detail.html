@@ -68,42 +68,6 @@ function myWindow1() {
     <div class="ya-share2"
          data-services="vkontakte,facebook,odnoklassniki,moimir,gplus,twitter,viber,whatsapp,telegram,blogger"></div><br/>
 
- {% if request.user.is_authenticated %}
-       
-            <h3>Добавить комменарий</h3>
-            <form class="mt-3" action="{% url 'addcomment_course' slug=course.slug %}" method="post">
-                {% csrf_token %}
-
-                {% for field in form_comments %}
-                    {% if field.errors %}
-                        <div class="alert alert-danger">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                    {{ field }}
-                {% endfor %}
-
-                <button class="mt-3 btn btn-secondary" type="submit" name="button">Добавить комментарий</button>
-            </form>
-        
-    {% endif %}
-
-<hr>
-    
-        <div class="text"><h3>Коментарии</h3></div>
-        {% for comment in comments %}
-<div class="media">
-            <hr>  <img class="mr-3" src="{{ request.user.profile.picture.url }}"  alt="Generic placeholder image" width="100px">
-<div class="media-body">
-            <h5 class="mt-0">{{ comment.comment_author }}</h5>
-            {{ comment.comment_text }} <br>
-            <div class="text">{{ comment.comment_created }}</div> </div>  <br>
-<hr>
-        {% endfor %}
-
-</div>
-
-    
-
+ <br/>
 
 {% endblock %}
