@@ -39,7 +39,9 @@
     
     {{ article.created }}
     <br/>
-
+{% if article.attribution %}
+ <h6> Источник - {{ article.attribution }} </h6>
+{% endif %}
 <br/>
     <table class="table">
         <thead>
