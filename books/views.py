@@ -16,7 +16,7 @@ class SearchView(View):
 
     def get(self, request, *args, **kwargs):
 
-        question = request.GET.get('search')
+        question = request.GET.get('search').strip()
         if not question or len(question) < 3:
             return render(request, 'search_error.html')
         if question is not None:

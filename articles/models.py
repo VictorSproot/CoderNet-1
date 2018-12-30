@@ -22,7 +22,6 @@ class Articles(models.Model):
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='Категория', blank=True)
     img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
-    attribution = models.CharField(max_length=300, db_index=True, verbose_name='Ссылка на источник', default=' ')
 
     def get_model_name(self):
         return 'Статья'
