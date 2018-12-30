@@ -8,6 +8,17 @@
 {% block description %}
     <meta name="description" content="{{ course.desc_for_find }}">
 {% endblock %}
+
+<html prefix="og: http://ogp.me/ns#
+      video: http://ogp.me/ns/video#
+      ya: http://webmaster.yandex.ru/vocabularies/">
+    
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ book.title }}">
+<meta property="og:url" content="https://codernet.ru/{{ course.get_absolute_url }}">
+<meta property="og:description" name="description" content="{{ course.desc_for_find }}">
+<meta property="og:image" content="{{ course.img_file.url }}">
+<meta property="og:video" content="https://codernet.ru/{{ course.get_absolute_url }}">
 {% block content %}
     <a href="#" class="btn btn-outline-secondary " onclick="history.back();"><i class="fa fa-reply"
                                                                                 aria-hidden="true"></i></i>&nbsp;Вернуться</a>
