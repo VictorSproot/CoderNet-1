@@ -48,7 +48,7 @@ function myWindow1() {
 
 
                 <a href="#" onclick="myWindow1()" id="raz"><img class="img-fluid z-depth-1"
-                                 src="{% if video.img_file_link %}{{ video.img_file_link.url }}{% endif %}"
+                                 src="{{ video.generate_file_preview }}"
                                  alt="video" data-toggle="modal" data-target="#modal{{ video.title }}"></a>
                 <span>{{ video.title }}</span>
             </div>

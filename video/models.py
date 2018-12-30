@@ -22,10 +22,12 @@ class Video(models.Model):
     link = models.CharField(max_length=500, verbose_name='Ссылка на видео')
     course = models.ForeignKey('Course', related_name='video', on_delete=models.CASCADE, null=True, blank=True,
                                verbose_name='Курс')
-    img_file_link = models.ImageField(upload_to=generate_filename_jpg_video, null=True, blank=True, verbose_name='IMG')
 
     def __str__(self):
         return self.title
+
+    def generate_file_preview(self):
+        return "https://img.youtube.com/vi/{}/hqdefault.jpg".format(self.link.split('.')[2].split('=')[1])
 
     class Meta:
         verbose_name = 'Видео'
