@@ -6,7 +6,6 @@ __pycache__/
 *$py.class
 .idea
 robots.txt
-
 # C extensions
 *.so
 
