@@ -16,7 +16,7 @@
         <ul class="list-unstyled">
             <li class="media">
                 <a href="{{ course.get_absolute_url }}"><img class="mr-3"
-                                                             src="{% if course.img_file %} {{ course.img_file.url }} {% endif %}"
+                                                             src="{{ course.video.all.first.generate_file_preview }}"
                                                              width="150"
                                                              alt="{{ course.title }}"></a>
                 <div class="media-body">

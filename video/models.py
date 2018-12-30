@@ -41,7 +41,6 @@ class Course(models.Model):
     desc_for_find = models.TextField(blank=True, db_index=True, verbose_name='Описание для поиска')
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
     category = models.ManyToManyField('Category', related_name='courses', verbose_name='Категория')
-    img_file = models.ImageField(upload_to=generate_filename_jpg, null=True, blank=True, verbose_name='IMG')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def get_model_name(self):
