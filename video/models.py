@@ -27,7 +27,7 @@ class Video(models.Model):
         return self.title
 
     def generate_file_preview(self):
-        return "https://img.youtube.com/vi/{}/hqdefault.jpg".format(self.link.split('.')[2].split('=')[1])
+        return "https://img.youtube.com/vi/{}/hqdefault.jpg".format(self.link.split('/')[-1])
 
     class Meta:
         verbose_name = 'Видео'
