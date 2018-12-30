@@ -22,7 +22,7 @@
 <li class="media">
 <a href="{{ course.get_absolute_url }}"><img class="mr-3" src="{% if course.img_file %} {{ course.img_file.url }} {% endif %}" width="150" alt="{{ course.title }}"></a>
 <div class="media-body">
-<h5 class="mt-0 mb-1"><a href="{{ course.get_absolute_url }}">{{ course.title }}</a></h5>
+<h5 class="mt-0 mb-1"><a href="{{ course.get_absolute_url }}"><p class='text-dark'>{{ course.title }}</p></a></h5>
 {% autoescape off %}{{ course.description|truncatewords:10 }}{% endautoescape %}
 </br><span class="badge badge-secondary"> {{ course.category.first }} </span>
 </div>
