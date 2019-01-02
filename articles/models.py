@@ -54,7 +54,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Категории'
         verbose_name = 'Категория'
-
+        ordering = ['title']
 
 class Comments(models.Model):
     class Meta:
