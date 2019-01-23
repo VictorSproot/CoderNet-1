@@ -54,7 +54,7 @@ urlpatterns = [
     path('sitemaps.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # path('register/', register, name='register_url'),
     # path('account/', account_detail, name='account_url'),
-    path('service/', include('service.urls'))
+    # path('service/', include('service.urls'))
 ]
 
 
