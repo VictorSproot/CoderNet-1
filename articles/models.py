@@ -16,7 +16,7 @@ def generate_filename_jpg(instance, filename):
 class Articles(models.Model):
     title = models.CharField(max_length=300, db_index=True, verbose_name='Название статьи')
     slug = models.SlugField(max_length=300, verbose_name='Ссылка', unique=True)
-    body = RichTextField(blank=True, db_index=True, verbose_name='Описание')
+    body = RichTextField(blank=True, verbose_name='Описание')
     created = models.DateTimeField(auto_now_add=True)
     desc_for_find = models.TextField(blank=True, db_index=True, verbose_name='Описание для поиска')
     keywords = models.CharField(max_length=200, blank=True, verbose_name='Кейвордс')
