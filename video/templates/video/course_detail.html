@@ -6,14 +6,14 @@
     <meta name="keywords" content="{{ course.keywords }}">
 {% endblock %}
 {% block description %}
-    <meta name="description" content="{{ course.desc_for_find }}">
-{% endblock %}  
+<meta name="description" content="{{ course.desc_for_find }}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{ course.title }}">
 <meta property="og:url" content="https://codernet.ru/{{ course.get_absolute_url }}">
 <meta property="og:description" name="description" content="{{ course.desc_for_find }}">
 <meta property="og:image" content="{{ course.video.all.first.generate_file_preview }}">
 <meta property="og:video" content="https://codernet.ru/{{ course.get_absolute_url }}">
+{% endblock %} 
 {% block content %}
     <a href="#" class="btn btn-outline-secondary " onclick="history.back();"><i class="fa fa-reply"
                                                                                 aria-hidden="true"></i></i>&nbsp;Вернуться</a>
