@@ -38,7 +38,6 @@
         </div>
     </div>
     {% if is_paginated %}
-        <div class="offset-md-3 col-6 mt-5 mb-5">
             <nav aria-label="...">
                 <ul class="pagination justify-content-center">
                     <li class="page-item {% if not prev_url %}disabled{% endif %}">
@@ -60,6 +59,5 @@
                     </li>&nbsp;
                 </ul>
             </nav>
-        </div>
     {% endif %}
 {% endblock %}
